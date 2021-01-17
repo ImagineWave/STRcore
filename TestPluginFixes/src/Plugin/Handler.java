@@ -2,24 +2,18 @@ package Plugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -37,26 +31,26 @@ public Handler(Main plugin) {
 	public void spawnplayer(PlayerJoinEvent e) {
 	Player p = e.getPlayer();
 	String name = p.getName();
-	MessageManager.getManager().msg(p, MessageType.INFO, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, "+ name);
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "пїЅ4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ /HOME");
+	MessageManager.getManager().msg(p, MessageType.INFO, "Добро пожаловать на сервер, "+ name);
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ВНИМАНИЕ! БЫЛА УДАЛЕНА КОМАНДА /HOME");
 	File players = new File(plugin.getDataFolder() + File.separator + "players.yml");
 	FileConfiguration users = YamlConfiguration.loadConfiguration(players);
 	List<String> list = users.getStringList("users");//govno ebanoe
 	if(list.contains(p.getName())) return;
 	{
-		Home home = new Home(plugin); // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		Home home = new Home(plugin); // Штука для установки точки дома
 		list.add(p.getName());
 		Location spawn = SpawnToLoc();
 		p.teleport(spawn);
-		Bukkit.broadcastMessage("пїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅdпїЅl" + p.getName()+"пїЅa пїЅпїЅ пїЅbпїЅlSTRпїЅaпїЅlmineпїЅa!");
+		Bukkit.broadcastMessage("§aПоприветствуем нового игрока §d§l" + p.getName()+"§a на §b§lSTR§a§lmine§a!");
 		p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 600, 4), true);
 		p.setBedSpawnLocation(spawn, true);
-		home.locToConfig(p.getName(),spawn); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		home.locToConfig(p.getName(),spawn); // Установка точки дома на спауне
 		try {
 		StrPlayer spl = new StrPlayer(plugin);
 		spl.setNickname(p.getName());
@@ -112,7 +106,7 @@ public void onDeath(PlayerDeathEvent e) {
 		i.setInvulnerable(true);
 		i.setWillAge(false);
 		i.setCustomNameVisible(true);
-		i.setCustomName(ChatColor.AQUA + p.getName());
+		i.setCustomName("§bВещи " + p.getName());
 	}
 }
 
