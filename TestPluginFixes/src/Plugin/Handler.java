@@ -2,18 +2,24 @@ package Plugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -31,26 +37,26 @@ public Handler(Main plugin) {
 	public void spawnplayer(PlayerJoinEvent e) {
 	Player p = e.getPlayer();
 	String name = p.getName();
-	MessageManager.getManager().msg(p, MessageType.INFO, "Äîáğî ïîæàëîâàòü íà ñåğâåğ, "+ name);
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
-	MessageManager.getManager().msg(p, MessageType.GOOD, "§4 ÂÍÈÌÀÍÈÅ! ÁÛËÀ ÓÄÀËÅÍÀ ÊÎÌÀÍÄÀ /HOME");
+	MessageManager.getManager().msg(p, MessageType.INFO, "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, "+ name);
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
+	MessageManager.getManager().msg(p, MessageType.GOOD, "ï¿½4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ /HOME");
 	File players = new File(plugin.getDataFolder() + File.separator + "players.yml");
 	FileConfiguration users = YamlConfiguration.loadConfiguration(players);
 	List<String> list = users.getStringList("users");//govno ebanoe
 	if(list.contains(p.getName())) return;
 	{
-		Home home = new Home(plugin); // Øòóêà äëÿ óñòàíîâêè òî÷êè äîìà
+		Home home = new Home(plugin); // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		list.add(p.getName());
 		Location spawn = SpawnToLoc();
 		p.teleport(spawn);
-		Bukkit.broadcastMessage("§aÏîïğèâåòñòâóåì íîâîãî èãğîêà §d§l" + p.getName()+"§a íà §b§lSTR§a§lmine§a!");
+		Bukkit.broadcastMessage("ï¿½aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½dï¿½l" + p.getName()+"ï¿½a ï¿½ï¿½ ï¿½bï¿½lSTRï¿½aï¿½lmineï¿½a!");
 		p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 600, 4), true);
 		p.setBedSpawnLocation(spawn, true);
-		home.locToConfig(p.getName(),spawn); // Óñòàíîâêà òî÷êè äîìà íà ñïàóíå
+		home.locToConfig(p.getName(),spawn); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		try {
 		StrPlayer spl = new StrPlayer(plugin);
 		spl.setNickname(p.getName());
@@ -95,7 +101,20 @@ public void mobProtect(CreatureSpawnEvent e) {
 	return;
 }
 
-
+@EventHandler
+public void onDeath(PlayerDeathEvent e) {
+	Player p = e.getEntity();
+	World w = p.getWorld();
+	List<ItemStack> drops = new ArrayList<>(e.getDrops());
+	e.getDrops().clear();
+	for(ItemStack drop : drops) {
+		Item i = w.dropItemNaturally(p.getLocation(), drop);
+		i.setInvulnerable(true);
+		i.setWillAge(false);
+		i.setCustomNameVisible(true);
+		i.setCustomName(ChatColor.AQUA + p.getName());
+	}
+}
 
 public Location configToLoc (String name) {		
 	 File homes = new File(plugin.getDataFolder() + File.separator + "homes.yml");
